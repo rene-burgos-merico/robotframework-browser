@@ -10,17 +10,25 @@ class DummyClass:
     def keyword_with(self, arg1, *args, **kwargs):
         pass
 
+    def keyword_with_magic(self, **kwargs):
+        pass
 
 @pytest.fixture
 def keyword():
     return DummyClass().keyword_with_args
 
 
+@pytest.fixture
+def keywordMagic():
+    return DummyClass().keyword_with_magic
+
 def test_method_to_keyword():
     assert _method_to_keyword("bar") == "Bar"
     assert _method_to_keyword("BAR") == "Bar"
     assert _method_to_keyword("BaR_FoO") == "Bar Foo"
 
+def test_method_makes_magic():
+    asser 
 
 def test_is_deprecated_no_deprecate(keyword):
     assert _is_deprecated_attribute(keyword, False, (DummyClass(),), ()) is False
